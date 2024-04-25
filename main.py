@@ -1,18 +1,18 @@
 import random
 import requests
 
-# 
+#
 GREETINGS = ("> Привет!", "> Здравствуй!", "> Рада тебя видеть!", "> Добро пожаловать!")
 
-# 
+#
 HELP_MESSAGES = (
     "> Я могу рассказать вам погоду, новости, поставить будильник или найти информацию в интернете.",
     "> Спросите меня о погоде, новостях или попросите найти что-нибудь в интернете.",
     "> Я эксперт во многих областях, так что не стесняйтесь спрашивать."
 )
 
-# 
-WEATHER_API_KEY = "71f2b779073e139bada4e6acc2ab9f1b"
+#
+WEATHER_API_KEY = "6d8e495ca73d5bbc1d6bf8ebd52c4"
 WEATHER_LOCATIONS = {
     "Москва": "Moscow",
     "Санкт-Петербург": "Saint Petersburg",
@@ -21,13 +21,13 @@ WEATHER_LOCATIONS = {
     "Казань": "Kazan"
 }
 
-# 
-NEWS_API_KEY = "71f2b779073e139bada4e6acc2ab9f1b"
+#
+NEWS_API_KEY = "dbb3c25c61cd447fa02390f363a55979"
 
-# 
+#
 ALARMS = {}
 
-# 
+#
 JOKES = (
     "> Почему курица перешла дорогу? Чтобы попасть на другую сторону!",
     "> Что говорит ремень штанов пуговице? Обхвати меня!",
@@ -41,7 +41,7 @@ JOKES = (
     "> Мудрость приходит с годами. А потом уходит…"
 )
 
-# 
+#
 TRIVIA_QUESTIONS = (
     {"question": "> Кто написал Гарри Поттера?", "answer": "Джоан Роулинг"},
     {"question": "> Какая самая высокая гора в мире?", "answer": "Эверест"},
@@ -54,7 +54,7 @@ TRIVIA_QUESTIONS = (
     {"question": "> Овощ, в котором «сто одёжек»?", "answer": "Капуста"}
 )
 
-# 
+#
 GAMES = {
     "камень-ножницы-бумага": {
         "moves": ["камень", "ножницы", "бумага"],
@@ -71,7 +71,7 @@ GAMES = {
 }
 
 
-# 
+#
 def main():
     print("")
     print("Привет! Я Алиса, твой персональный помощник.")
@@ -116,12 +116,12 @@ def main():
             print("> Извините, я не понимаю.")
 
 
-# 
+#
 def get_weather(location):
     if location in WEATHER_LOCATIONS:
         location = WEATHER_LOCATIONS[location]
     response = requests.get(
-        'https://api.openweathermap.org/data/2.5/weather?q=Moscow&appid=71f2b779073e139bada4e6acc2ab9f1b')
+        'https://api.openweathermap.org/data/2.5/find?q=Petersburg&type=like&APPID=6d8e495ca73d5bbc1d6bf8ebd52c4')
     data = response.json()
     temp = data["main"]["temp"]
     humidity = data["main"]["humidity"]
@@ -129,7 +129,7 @@ def get_weather(location):
     print(f"Погода в {location}: {description}, Температура: {temp} градусов, Влажность: {humidity}%")
 
 
-# 
+#
 def get_news():
     url = f"https://newsapi.org/v2/top-headlines?country=ru&apiKey={NEWS_API_KEY}"
     response = requests.get(url)
@@ -142,7 +142,7 @@ def get_news():
         print("> Не удалось получить новости.Я уже разбираюсь в этой проблеме, попробуйте пока другую команду.")
 
 
-# 
+#
 def set_alarm(user_input):
     if len(user_input.split(" ")) > 1:
         time = user_input.split()[1]
@@ -150,7 +150,7 @@ def set_alarm(user_input):
         print(f"Будильник установлен на {time}.")
 
 
-# 
+#
 def play_trivia():
     question = random.choice(TRIVIA_QUESTIONS)
     print(question["question"])
@@ -161,7 +161,7 @@ def play_trivia():
         print("Неправильно. Правильный ответ: {}".format(question["answer"]))
 
 
-# 
+#
 def play_game(game):
     if game == GAMES["камень-ножницы-бумага"]:
         print("Правила игры:")
