@@ -1,17 +1,17 @@
 import random
 import requests
 
-#
+#    ПРИВЕТСТВИЕ
 GREETINGS = ("> Привет!", "> Здравствуй!", "> Рада тебя видеть!", "> Добро пожаловать!")
 
-#
+#        ПОМОЩЬ / СПРАВКА
 HELP_MESSAGES = (
     "> Я могу рассказать вам погоду, новости, поставить будильник или найти информацию в интернете.",
     "> Спросите меня о погоде, новостях или попросите найти что-нибудь в интернете.",
     "> Я эксперт во многих областях, так что не стесняйтесь спрашивать."
 )
 
-#
+#          ПОГОДНЫЙ КЛЮЧ
 WEATHER_API_KEY = "6d8e495ca73d5bbc1d6bf8ebd52c4"
 WEATHER_LOCATIONS = {
     "Москва": "Moscow",
@@ -21,13 +21,13 @@ WEATHER_LOCATIONS = {
     "Казань": "Kazan"
 }
 
-#
+#            КЛЮЧ НОВОСТЕЙ
 NEWS_API_KEY = "dbb3c25c61cd447fa02390f363a55979"
 
-#
+#          СЮДА ПОПАДАЕТ ВРЕМЯ БУДИЛЬНИКА
 ALARMS = {}
 
-#
+#              АНЕКДОТЫ И ШУТКИ
 JOKES = (
     "> Почему курица перешла дорогу? Чтобы попасть на другую сторону!",
     "> Что говорит ремень штанов пуговице? Обхвати меня!",
@@ -41,7 +41,7 @@ JOKES = (
     "> Мудрость приходит с годами. А потом уходит…"
 )
 
-#
+#          ВИКТОРИНЫ
 TRIVIA_QUESTIONS = (
     {"question": "> Кто написал Гарри Поттера?", "answer": "Джоан Роулинг"},
     {"question": "> Какая самая высокая гора в мире?", "answer": "Эверест"},
@@ -54,7 +54,7 @@ TRIVIA_QUESTIONS = (
     {"question": "> Овощ, в котором «сто одёжек»?", "answer": "Капуста"}
 )
 
-#
+#          ИГРЫ
 GAMES = {
     "камень-ножницы-бумага": {
         "moves": ["камень", "ножницы", "бумага"],
@@ -71,7 +71,7 @@ GAMES = {
 }
 
 
-#
+#           ОСНОВНОЙ ТЕКСТ И ФУНКЦИОНАЛ
 def main():
     print("")
     print("Привет! Я Алиса, твой персональный помощник.")
@@ -116,7 +116,7 @@ def main():
             print("> Извините, я не понимаю.")
 
 
-#
+#         ПОГОДА
 def get_weather(location):
     if location in WEATHER_LOCATIONS:
         location = WEATHER_LOCATIONS[location]
@@ -129,7 +129,7 @@ def get_weather(location):
     print(f"Погода в {location}: {description}, Температура: {temp} градусов, Влажность: {humidity}%")
 
 
-#
+#         НОВОСТИ
 def get_news():
     url = f"https://newsapi.org/v2/top-headlines?country=ru&apiKey={NEWS_API_KEY}"
     response = requests.get(url)
@@ -142,7 +142,7 @@ def get_news():
         print("> Не удалось получить новости.Я уже разбираюсь в этой проблеме, попробуйте пока другую команду.")
 
 
-#
+#             БУДИЛЬНИК
 def set_alarm(user_input):
     if len(user_input.split(" ")) > 1:
         time = user_input.split()[1]
@@ -150,7 +150,7 @@ def set_alarm(user_input):
         print(f"Будильник установлен на {time}.")
 
 
-#
+#               РАБОТА ВИКТОРИНЫ
 def play_trivia():
     question = random.choice(TRIVIA_QUESTIONS)
     print(question["question"])
@@ -161,7 +161,7 @@ def play_trivia():
         print("Неправильно. Правильный ответ: {}".format(question["answer"]))
 
 
-#
+#           РАБОТА ИГР
 def play_game(game):
     if game == GAMES["камень-ножницы-бумага"]:
         print("Правила игры:")
